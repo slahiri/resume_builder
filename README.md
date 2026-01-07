@@ -138,7 +138,7 @@ All tables have Row Level Security (RLS) enabled.
 
 ## License
 
-Private - All rights reserved
+MIT License - see [LICENSE](./LICENSE) for details
 
 ## Links
 
