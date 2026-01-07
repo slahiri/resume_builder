@@ -49,7 +49,7 @@ export default async function BuilderPage({ params }: BuilderPageProps) {
   return (
     <SidebarProvider>
       <AppSidebar user={userData} />
-      <SidebarInset>
+      <SidebarInset className="h-screen">
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator
@@ -68,7 +68,7 @@ export default async function BuilderPage({ params }: BuilderPageProps) {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden min-h-0">
           <BuilderContent resume={resume} />
         </div>
       </SidebarInset>

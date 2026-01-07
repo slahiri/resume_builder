@@ -54,9 +54,11 @@ export function BuilderContent({ resume, chatHistory = [] }: BuilderContentProps
   )
 
   return (
-    <BuilderLayout
-      chatPanel={<ChatInterface onSendMessage={handleSendMessage} />}
-      previewPanel={<ResumePreview />}
-    />
+    <div className="h-full w-full">
+      <BuilderLayout
+        chatPanel={<ChatInterface onSendMessage={handleSendMessage} />}
+        previewPanel={<ResumePreview />}
+      />
+    </div>
   )
 }

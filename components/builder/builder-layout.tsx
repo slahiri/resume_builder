@@ -1,10 +1,5 @@
 "use client"
 
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable"
 import { useIsMobile } from "@/hooks/use-mobile"
 
 interface BuilderLayoutProps {
@@ -25,14 +20,13 @@ export function BuilderLayout({ chatPanel, previewPanel }: BuilderLayoutProps) {
   }
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="h-full">
-      <ResizablePanel defaultSize={40} minSize={30} maxSize={60}>
+    <div className="flex h-full w-full">
+      <div className="w-[40%] h-full overflow-hidden border-r">
         {chatPanel}
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={60} minSize={40}>
+      </div>
+      <div className="w-[60%] h-full overflow-hidden">
         {previewPanel}
-      </ResizablePanel>
-    </ResizablePanelGroup>
+      </div>
+    </div>
   )
 }

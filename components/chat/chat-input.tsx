@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Send } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { ArrowUp } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ChatInputProps {
   onSend: (message: string) => void
@@ -26,7 +25,6 @@ export function ChatInput({
     onSend(input.trim())
     setInput("")
 
-    // Reset textarea height
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto"
     }
@@ -39,36 +37,47 @@ export function ChatInput({
     }
   }
 
-  // Auto-resize textarea
   useEffect(() => {
     const textarea = textareaRef.current
     if (textarea) {
       textarea.style.height = "auto"
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`
     }
   }, [input])
 
+  const canSend = input.trim().length > 0 && !disabled
+
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 p-4 border-t bg-background">
-      <Textarea
+    <form
+      onSubmit={handleSubmit}
+      className="relative flex items-end gap-2 rounded-2xl border bg-background p-2 shadow-sm"
+    >
+      <textarea
         ref={textareaRef}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         disabled={disabled}
-        className="min-h-[44px] max-h-[200px] resize-none"
         rows={1}
+        className={cn(
+          "flex-1 resize-none bg-transparent px-2 py-1.5 text-sm placeholder:text-muted-foreground focus:outline-none disabled:opacity-50",
+          "min-h-[36px] max-h-[150px]"
+        )}
       />
-      <Button
+      <button
         type="submit"
-        size="icon"
-        disabled={!input.trim() || disabled}
-        className="shrink-0 h-11 w-11"
+        disabled={!canSend}
+        className={cn(
+          "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors",
+          canSend
+            ? "bg-foreground text-background hover:bg-foreground/90"
+            : "bg-muted text-muted-foreground"
+        )}
       >
-        <Send className="h-4 w-4" />
+        <ArrowUp className="h-4 w-4" />
         <span className="sr-only">Send message</span>
-      </Button>
+      </button>
     </form>
   )
 }

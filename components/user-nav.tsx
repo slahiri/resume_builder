@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import {
   LogOut,
@@ -46,6 +46,11 @@ export function UserNav({ user }: UserNavProps) {
   const { isMobile } = useSidebar()
   const { setTheme, theme } = useTheme()
   const [resetPasswordOpen, setResetPasswordOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const initials = user.name
     ? user.name
@@ -57,6 +62,30 @@ export function UserNav({ user }: UserNavProps) {
 
   const handleLogout = async () => {
     await logout()
+  }
+
+  // Prevent hydration mismatch by not rendering dropdown until mounted
+  if (!mounted) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton size="lg">
+            <Avatar className="h-8 w-8 rounded-lg">
+              <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">
+                {user.name || "User"}
+              </span>
+              <span className="truncate text-xs text-muted-foreground">
+                {user.email}
+              </span>
+            </div>
+            <ChevronsUpDown className="ml-auto size-4" />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    )
   }
 
   return (
@@ -120,9 +149,9 @@ export function UserNav({ user }: UserNavProps) {
               <DropdownMenuSeparator />
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                  {theme === "dark" ? (
+                  {mounted && theme === "dark" ? (
                     <Moon className="mr-2 h-4 w-4" />
-                  ) : theme === "light" ? (
+                  ) : mounted && theme === "light" ? (
                     <Sun className="mr-2 h-4 w-4" />
                   ) : (
                     <Monitor className="mr-2 h-4 w-4" />
