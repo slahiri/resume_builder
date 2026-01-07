@@ -128,13 +128,10 @@ This release focuses on building the core resume builder functionality with AI-p
 - [ ] Fetch resume by ID on builder mount
 - [ ] Handle not found / unauthorized
 
-### Phase 5: Settings Page
+### Phase 5: LLM Configuration in User Profile
 
-#### 5.1 Settings UI
-- [ ] Create `/app/settings/page.tsx`
-- [ ] Tabbed interface (LLM, Account, Appearance)
-
-#### 5.2 LLM Configuration
+#### 5.1 Profile Dropdown LLM Settings
+- [ ] Add LLM settings section to user profile dropdown
 - [ ] Provider selection dropdown:
   - OpenAI
   - Anthropic
@@ -146,7 +143,7 @@ This release focuses on building the core resume builder functionality with AI-p
 - [ ] Test connection button
 - [ ] Validate and save settings
 
-#### 5.3 Provider-Specific Settings
+#### 5.2 Provider-Specific Settings
 | Provider | Required Fields |
 |----------|----------------|
 | OpenAI | API Key |
@@ -154,7 +151,7 @@ This release focuses on building the core resume builder functionality with AI-p
 | Ollama | Base URL (default: http://localhost:11434) |
 | LM Studio | Base URL (default: http://localhost:1234) |
 
-#### 5.4 API Key Management
+#### 5.3 API Key Management
 - [ ] Encrypt API keys before storing
 - [ ] Use user's own key for AI calls
 - [ ] Mask API keys in UI (show last 4 chars)
@@ -224,8 +221,6 @@ ALTER TABLE user_settings ADD COLUMN IF NOT EXISTS llm_base_url TEXT;
 │   ├── page.tsx              # New resume builder
 │   └── [id]/
 │       └── page.tsx          # Edit existing resume
-└── settings/
-    └── page.tsx              # Settings page
 
 /components
 ├── dashboard/
@@ -247,8 +242,8 @@ ALTER TABLE user_settings ADD COLUMN IF NOT EXISTS llm_base_url TEXT;
 │   └── section-projects.tsx
 ├── builder/
 │   └── builder-layout.tsx    # Split pane layout
-└── settings/
-    ├── llm-settings.tsx      # LLM configuration
+└── profile/
+    ├── llm-settings.tsx      # LLM configuration modal/panel
     └── provider-select.tsx   # Provider dropdown
 
 /lib
@@ -327,7 +322,7 @@ pnpm add openai zustand
 | M4 | Chat interface (no AI) | Day 4-5 |
 | M5 | LiteLLM integration + providers | Day 5-6 |
 | M6 | Resume agent + tools | Day 6-7 |
-| M7 | Settings page | Day 7-8 |
+| M7 | Profile LLM settings | Day 7-8 |
 | M8 | Testing + polish | Day 8-9 |
 
 ---
