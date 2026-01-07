@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-01-08
+
 ### Added
 - **Password visibility toggle**: All password fields now have an eye icon to show/hide password
 - **Password strength indicator**: Visual strength bar with color coding (red → green)
@@ -19,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - **User navigation dropdown**: Avatar with profile menu in sidebar footer
 - **Dark/Light mode toggle**: Theme switcher in user dropdown menu
 - **App sidebar**: Navigation with Dashboard, New Resume, My Resumes, Import Resume, History, Settings
+- **Developer documentation**: Comprehensive README with setup instructions
 
 ### Changed
 - Updated all password forms (login, signup, reset password) to use new PasswordInput component
