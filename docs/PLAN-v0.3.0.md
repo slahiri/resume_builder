@@ -27,50 +27,57 @@ This release focuses on building the core resume builder functionality with AI-p
 
 ## v0.3.0 Scope
 
-### Phase 1: Dashboard Redesign
+### Phase 1: Dashboard Redesign ✅ COMPLETED
 
 #### 1.1 Resume List/Card View
-- [ ] Refactor `/app/dashboard/page.tsx`
-- [ ] Fetch user's resumes from database
-- [ ] List view (table style) with columns: title, last modified, actions
-- [ ] Card view (grid style) with preview thumbnail
-- [ ] Toggle switch between list/card views
-- [ ] Persist view preference in localStorage
+- [x] Refactor `/app/dashboard/page.tsx`
+- [x] Fetch user's resumes from database
+- [x] List view (table style) with columns: title, last modified, actions
+- [x] Card view (grid style) with preview thumbnail
+- [x] Toggle switch between list/card views
+- [x] Persist view preference in localStorage
 
 #### 1.2 Empty State
-- [ ] Use shadcn empty component (outline style)
-- [ ] Show when user has no resumes
-- [ ] CTA button to create first resume
-- [ ] Friendly illustration/icon
+- [x] Use shadcn empty component (outline style)
+- [x] Show when user has no resumes
+- [x] CTA button to create first resume
+- [x] Friendly illustration/icon
 
 #### 1.3 Resume Actions
-- [ ] Edit button → navigate to `/builder/[id]`
-- [ ] Duplicate resume
-- [ ] Delete resume (with confirmation dialog)
-- [ ] Rename resume (inline edit or modal)
+- [x] Edit button → navigate to `/builder/[id]`
+- [x] Duplicate resume
+- [x] Delete resume (with confirmation dialog)
+- [x] Rename resume (inline edit or modal)
 
-### Phase 2: Core Builder Interface
+### Phase 2: Core Builder Interface ✅ COMPLETED
 
 #### 2.1 Builder Page Layout
-- [ ] Create `/app/builder/page.tsx` (new resume)
-- [ ] Create `/app/builder/[id]/page.tsx` (edit existing)
-- [ ] Split-pane layout (chat left, resume preview right)
-- [ ] Resizable panels using `react-resizable-panels`
-- [ ] Mobile-responsive (stacked on small screens)
+- [x] Create `/app/builder/page.tsx` (new resume)
+- [x] Create `/app/builder/[id]/page.tsx` (edit existing)
+- [x] Split-pane layout (chat left, resume preview right)
+- [x] Resizable panels using `react-resizable-panels`
+- [x] Mobile-responsive (stacked on small screens)
 
 #### 2.2 Resume Preview Component
-- [ ] Create `components/resume/resume-preview.tsx`
-- [ ] Render resume data as styled document
-- [ ] Section components (header, experience, education, skills, projects)
-- [ ] Real-time updates when data changes
-- [ ] Section highlight animation on update
+- [x] Create `components/resume/resume-preview.tsx`
+- [x] Render resume data as styled document
+- [x] Section components (header, experience, education, skills, projects)
+- [x] Real-time updates when data changes
+- [x] Section highlight animation on update
 
 #### 2.3 Chat Interface
-- [ ] Create `components/chat/chat-interface.tsx`
-- [ ] Message list with user/assistant bubbles
-- [ ] Input area with send button
-- [ ] Loading state during AI response
-- [ ] Auto-scroll to latest message
+- [x] Create `components/chat/chat-interface.tsx`
+- [x] Message list with user/assistant bubbles
+- [x] Input area with send button
+- [x] Loading state during AI response
+- [x] Auto-scroll to latest message
+
+#### 2.4 State Management
+- [x] Create `lib/store/resume-store.ts` (Zustand)
+- [x] Resume data state
+- [x] Chat messages state
+- [x] Updated section tracking (for animations)
+- [x] Initialize from database on load
 
 ### Phase 3: AI Integration with LiteLLM
 
@@ -103,13 +110,6 @@ This release focuses on building the core resume builder functionality with AI-p
   - `update_project`
   - `remove_project`
 - [ ] Parse tool calls and apply to resume state
-
-#### 3.4 State Management
-- [ ] Create `lib/store/resume-store.ts` (Zustand)
-- [ ] Resume data state
-- [ ] Chat messages state
-- [ ] Updated section tracking (for animations)
-- [ ] Persist to database on changes
 
 ### Phase 4: Resume CRUD
 
@@ -329,9 +329,9 @@ pnpm add openai zustand
 
 ## Success Criteria
 
-- [ ] Dashboard shows resumes in list or card view (user's choice)
-- [ ] Empty state displayed when no resumes exist
-- [ ] User can create, edit, duplicate, delete resumes
+- [x] Dashboard shows resumes in list or card view (user's choice)
+- [x] Empty state displayed when no resumes exist
+- [x] User can create, edit, duplicate, delete resumes
 - [ ] User can create a new resume via conversation
 - [ ] Resume updates in real-time as AI responds
 - [ ] Sections highlight when updated
