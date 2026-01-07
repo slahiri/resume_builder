@@ -1,6 +1,11 @@
 {
   "name": "resume-builder",
   "version": "0.2.0",
+  "author": {
+    "name": "Siddhartha Lahiri",
+    "email": "siddhartha.lahiri@gmail.com"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
