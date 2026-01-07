@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/card"
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
+import { PasswordStrength } from "@/components/ui/password-strength"
 import { resetPassword } from "@/lib/actions/auth"
 
 export function ResetPasswordForm({
@@ -25,6 +25,8 @@ export function ResetPasswordForm({
 }: React.ComponentProps<"div">) {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   async function handleSubmit(formData: FormData) {
     const password = formData.get("password") as string
@@ -70,16 +72,35 @@ export function ResetPasswordForm({
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="password">New Password</FieldLabel>
-                <Input id="password" name="password" type="password" required />
-                <FieldDescription>
-                  Must be at least 8 characters long.
-                </FieldDescription>
+                <PasswordInput
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <PasswordStrength
+                  password={password}
+                  onGeneratePassword={(newPassword) => {
+                    setPassword(newPassword)
+                    setConfirmPassword(newPassword)
+                  }}
+                />
               </Field>
               <Field>
                 <FieldLabel htmlFor="confirm-password">
                   Confirm New Password
                 </FieldLabel>
-                <Input id="confirm-password" name="confirm-password" type="password" required />
+                <PasswordInput
+                  id="confirm-password"
+                  name="confirm-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+                {confirmPassword && password !== confirmPassword && (
+                  <p className="text-xs text-red-500">Passwords do not match</p>
+                )}
               </Field>
               <Field>
                 <Button type="submit" disabled={loading} className="w-full">

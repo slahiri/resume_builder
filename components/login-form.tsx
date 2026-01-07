@@ -18,6 +18,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { login } from "@/lib/actions/auth"
 
 export function LoginForm({
@@ -82,7 +83,7 @@ export function LoginForm({
                     Forgot your password?
                   </Link>
                 </div>
-                <Input id="password" name="password" type="password" required />
+                <PasswordInput id="password" name="password" required />
               </Field>
               <Field>
                 <Button type="submit" disabled={loading} className="w-full">
